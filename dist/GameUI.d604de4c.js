@@ -179,8 +179,8 @@ function () {
 
       if (!this.apples.find(function (c) {
         return c.x === randX && c.y === randY;
-      }) && snake.getHead().x !== randX && snake.getHead().y !== randY && snake.getTail().some(function (c) {
-        return c.x !== randX && c.y !== randY;
+      }) && snake.getHead().x !== randX && snake.getHead().y !== randY && !snake.getTail().some(function (c) {
+        return c.x === randX && c.y === randY;
       })) {
         this.apples.push(new _Cell.Cell(randX, randY));
       }

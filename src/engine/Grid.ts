@@ -23,7 +23,7 @@ export class Grid {
       
     if (!this.apples.find(c => c.x === randX && c.y === randY)
     && snake.getHead().x !== randX && snake.getHead().y !== randY
-    && snake.getTail().some(c => c.x !== randX && c.y !== randY)){
+    && !snake.getTail().some(c => c.x === randX && c.y === randY)){
       this.apples.push(new Cell(randX, randY));
     }
     }
