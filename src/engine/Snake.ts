@@ -10,13 +10,13 @@ export class Snake {
 
 
   setDirection(direction: Direction) {
-    if (this.direction === 'Right' && direction === 'Left') {
+    if (direction === 'Left' && this.isSnake(new Cell(this.head.x - 1, this.head.y))) {
       this.direction = this.direction;
-    } else if (this.direction === 'Down' && direction === 'Up') {
+    } else if (direction === 'Up' && this.isSnake(new Cell(this.head.x, this.head.y - 1))) {
       this.direction = this.direction;
-    } else if (this.direction === 'Left' && direction === 'Right') {
+    } else if (direction === 'Right' && this.isSnake(new Cell(this.head.x + 1, this.head.y))) {
       this.direction = this.direction;
-    } else if (this.direction === 'Up' && direction === 'Down') {
+    } else if (direction === 'Down' && this.isSnake(new Cell(this.head.x, this.head.y + 1))) {
       this.direction = this.direction;
     } else {
       this.direction = direction;
@@ -42,7 +42,6 @@ export class Snake {
         break;
     }
   }
-
   grow() {
     this.tailSize += 3;
   }

@@ -238,13 +238,13 @@ function () {
   }
 
   Snake.prototype.setDirection = function (direction) {
-    if (this.direction === 'Right' && direction === 'Left') {
+    if (direction === 'Left' && this.isSnake(new _Cell.Cell(this.head.x - 1, this.head.y))) {
       this.direction = this.direction;
-    } else if (this.direction === 'Down' && direction === 'Up') {
+    } else if (direction === 'Up' && this.isSnake(new _Cell.Cell(this.head.x, this.head.y - 1))) {
       this.direction = this.direction;
-    } else if (this.direction === 'Left' && direction === 'Right') {
+    } else if (direction === 'Right' && this.isSnake(new _Cell.Cell(this.head.x + 1, this.head.y))) {
       this.direction = this.direction;
-    } else if (this.direction === 'Up' && direction === 'Down') {
+    } else if (direction === 'Down' && this.isSnake(new _Cell.Cell(this.head.x, this.head.y + 1))) {
       this.direction = this.direction;
     } else {
       this.direction = direction;
@@ -709,7 +709,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58241" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56858" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

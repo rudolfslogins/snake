@@ -67,28 +67,69 @@ describe("Snake", () => {
         expect(snake.getHead()).toEqual(new Cell(5, 0))
         expect(snake.getTail().length).toBe(5);
     })
-    it("should NOT move in opposite direction", () => {
+    it("should NOT move in opposite direction if Left", () => {
+        const snake = new Snake()
+        
+        snake.setDirection('Down');
+        snake.setDirection('Left');
+        //snake.move();
+
+        expect(snake.getDirection()).toBe('Down');
+    })
+    it("should NOT move in opposite direction if Right", () => {
         const snake = new Snake()
 
         snake.setDirection('Down');
         snake.move();
-        snake.setDirection('Up');
+        snake.setDirection('Left');
         snake.move();
+        snake.setDirection('Down');
+        snake.setDirection('Right');
 
         expect(snake.getDirection()).toBe('Down');
+    })
+    it("should NOT move in opposite direction if Up", () => {
+        const snake = new Snake()
+
+        snake.setDirection('Down');
+        snake.move();
+        snake.setDirection('Left');
+        snake.setDirection('Up');
+
+        expect(snake.getDirection()).toBe('Left');
+    })
+    it("should NOT move in opposite direction if Down", () => {
+        const snake = new Snake()
+
+        snake.setDirection('Down');
+        snake.move();
+        snake.move();
+        snake.move();
+        snake.setDirection('Right');
+        snake.move();
+        snake.move();
+        snake.move();
+        snake.setDirection('Up');
+        snake.move();
+        snake.setDirection('Right');
+        snake.setDirection('Down');
+
+        expect(snake.getDirection()).toBe('Right');
     })
     it("should lose if hit snake body", () => {
         const snake = new Snake()
         snake.grow();
         snake.grow();
         snake.grow();
-        snake.setDirection('Right');
         snake.move();
         snake.setDirection('Down');
         snake.move();
+        snake.move();
         snake.setDirection('Left');
         snake.move();
+        snake.move();
         snake.setDirection('Up');
+        snake.move();
         snake.move();
         expect(snake.isSnake(snake.getHead())).toBe(true);
     })
