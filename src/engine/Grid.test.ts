@@ -51,5 +51,35 @@ describe("Grid", () => {
     grid.seed(new Snake);
     expect(grid.getApples().length).toBe(conf.apples + conf.level);
   });
+  it("should not seed apples in snakey", () => {
+    for (var i = 0; i < 200; i++) {
+      const conf = configuration;
+      conf.level = 0;
+      const grid = new Grid(conf);
+      const snake = new Snake;
+      snake.setDirection("Down");
+      for (var k = 0; k < 5; k++){
+        snake.move();
+        snake.grow();
+      }
+      snake.setDirection("Right");
+      for (var k = 0; k < 5; k++){
+        snake.move();
+        snake.grow();
+      }
+      for (var j = 0; j < 11; j++) {
+        const apples = grid.getApples();
+        //console.log('Apples: ' + apples.length + '; Level: ' + conf.level);
+        apples.forEach(element => {
+        expect(true).not.toBe(snake.isSnake(element));   
+        });
+        apples.forEach(element => {
+          grid.removeApple(element);
+        });
+        conf.level++;
+        grid.seed(snake);
+      }
+    }
+  });
 
 });
